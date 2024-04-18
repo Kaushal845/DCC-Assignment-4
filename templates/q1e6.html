@@ -6,39 +6,16 @@
     <title>Party Donations Pie Chart</title>
     <!-- Include Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif; /* Uses Arial font for the body text */
-            background-color: #f4f4f9; /* Light grey background */
-            color: #333; /* Dark grey text color for better readability */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Full viewport height */
-        }
-
-        .chart-container {
-            width: 60%; /* Chart container width */
-            max-width: 600px; /* Maximum width */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-            padding: 20px;
-            background: white; /* White background for the chart container */
-            border-radius: 8px; /* Rounded corners */
-        }
-
-        canvas {
-            display: block; /* Prevents default inline display */
-            width: 100% !important; /* Responsive width */
-            height: auto !important; /* Auto-height to maintain aspect ratio */
-        }
-    </style>
+    <!-- Include html2canvas library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 </head>
 <body>
-    <div class="chart-container">
+    <div style="width: 50%; margin: 0 auto;">
         <!-- Canvas element for the pie chart -->
         <canvas id="partyDonationsChart"></canvas>
+        <br>
+        <!-- Button to save chart as image -->
+        <button onclick="saveChart()">Save as Image</button>
     </div>
 
     <script>
@@ -69,13 +46,29 @@
                 }]
             },
             options: {
-                responsive: true,
                 title: {
                     display: true,
                     text: 'Party Donations'
                 }
             }
         });
+
+
+        function saveChart() {
+
+            html2canvas(document.getElementById('partyDonationsChart')).then(function(canvas) {
+
+                var imgData = canvas.toDataURL('image/png');
+
+                var link = document.createElement('a');
+
+                link.href = imgData;
+
+                link.download = 'party_donations_chart.png';
+
+                link.click();
+            });
+        }
     </script>
 </body>
 </html>
