@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+<!--        th {-->
+<!--            background-color: #f2f2f2;-->
+<!--        }-->
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body bgcolor="grey">
+    <h1>Company Statistics</h1>
+    {% if records %}
+    <table>
+        <thead>
+            <tr>
+                <th style="color: white;">Year</th>
+                <th style="color: white;">Number</th>
+                <th style="color: white;">Total Denomination</th>
+                <!-- Add more columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td style="color: white;">{{ record[0] }}</td>
+                <td style="color: white;">{{ record[1] }}</td>
+                <td style="color: white;">{{ record[2] }}</td>
+                <!-- Add more columns as needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+      {% else %}
+        <p>No records found.</p>
+    {% endif %}
+    </table>
+
+
+<!-- <canvas id="statisticsChart" width="800" height="400"></canvas>-->
+
+<!--    <script>-->
+<!--        var statisticsData = records[0];-->
+
+
+<!--        var years = statisticsData[0];-->
+<!--        var bondCounts = statisticsData[1];-->
+<!--        var totalValues = statisticsData[2];-->
+
+
+<!--        var ctx = document.getElementById('statisticsChart').getContext('2d');-->
+<!--        var myChart = new Chart(ctx, {-->
+<!--            type: 'bar',-->
+<!--            data: {-->
+<!--                labels: years,-->
+<!--                datasets: [{-->
+<!--                    label: 'Number of Bonds',-->
+<!--                    data: bondCounts,-->
+<!--                    backgroundColor: 'rgba(255, 99, 132, 0.2)', // Red color with opacity-->
+<!--                    borderColor: 'rgba(255, 99, 132, 1)', // Red color without opacity-->
+<!--                    borderWidth: 1-->
+<!--                }, {-->
+<!--                    label: 'Total Value',-->
+<!--                    data: totalValues,-->
+<!--                    backgroundColor: 'rgba(54, 162, 235, 0.2)', // Blue color with opacity-->
+<!--                    borderColor: 'rgba(54, 162, 235, 1)', // Blue color without opacity-->
+<!--                    borderWidth: 1-->
+<!--                }]-->
+<!--            },-->
+<!--            options: {-->
+<!--                scales: {-->
+<!--                    yAxes: [{-->
+<!--                        ticks: {-->
+<!--                            beginAtZero: true-->
+<!--                        }-->
+<!--                    }]-->
+<!--                }-->
+<!--            }-->
+<!--        });-->
+<!--    </script>-->
+</body>
+</html>

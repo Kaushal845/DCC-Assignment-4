@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Electoral Bond Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+            text-align: left;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* includes padding and border in width */
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Electoral Bond Data</h1>
+        <form action="/search" method="post">
+            <label for="q2">Choose a column:</label>
+            <select id="q2" name='q2'>
+                <option value="Bond_Number">Bond Number</option>
+                <option value="Party">Party</option>
+                <option value="Denomination">Denomination</option>
+                <option value="Payteller">Payteller</option>
+                <option value="Company">Company</option>
+                <option value="Denominations">Denominations by Company</option>
+                <option value="Issueteller">Issueteller</option>
+            </select>
+            <label for="query">Search query:</label>
+            <input type="text" name="query" id="query" required>
+            <input type="submit" value="Search">
+        </form>
+    </div>
+</body>
+</html>

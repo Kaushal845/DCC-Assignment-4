@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Company Bond Data</title>
+    <style>
+        /* Set overall body styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Style for the main container */
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            width: 300px;
+        }
+
+        /* Style for the header */
+        h1 {
+            color: #333;
+            font-size: 22px;
+        }
+
+        /* Style for the form */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Style for the input field */
+        input[type="text"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* Style for the label */
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        /* Style for the submit button */
+        input[type="submit"] {
+            background-color: #5c67f2;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4a54e1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div align="center">
+            <h1>Search Company Bond Data</h1>
+        </div>
+        <form action="/partycompany" method="post">
+            <label for="Partyname">Search Party:</label>
+            <input type="text" name="Partyname" id="Partyname" required>
+            <input type="submit" value="Search">
+        </form>
+    </div>
+</body>
+</html>

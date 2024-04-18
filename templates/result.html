@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        /* Basic reset */
+        body, h1, table, th, td, p {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        /* Set up a decent font */
+        body {
+            background-color: #1e1e2d;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff6347;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #2e2e3e;
+        }
+
+        th {
+            background-color: #6264a7;
+            color: #ffffff;
+        }
+
+        td {
+            background-color: #2e2e3e;
+            color: #dcdcdc;
+        }
+
+        /* Hover effect for table rows */
+        tr:hover {
+            background-color: #42445a;
+            cursor: pointer;
+        }
+
+        /* Responsive web design */
+        @media (max-width: 600px) {
+            table, th, td {
+                width: 100%;
+                display: block;
+            }
+
+            th, td {
+                text-align: center;
+            }
+
+            th {
+                display: none; /* Hide the header in small screens */
+            }
+
+            td {
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td:before {
+                /* Use a pseudo-element for label the data */
+                position: absolute;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                content: attr(data-label);
+                color: #ffffff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Results</h1>
+    {% if records %}
+    <table>
+        <thead>
+            <tr>
+                <th>Bond Number</th>
+                <th>Party</th>
+                <th>Denomination</th>
+                <!-- Add more columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td data-label="Bond Number">{{ record[0] }}</td>
+                <td data-label="Party">{{ record[1] }}</td>
+                <td data-label="Denomination">{{ record[2] }}</td>
+                <!-- Add more columns as needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No records found.</p>
+    {% endif %}
+</body>
+</html>

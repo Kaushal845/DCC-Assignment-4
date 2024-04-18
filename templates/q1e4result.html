@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e2d;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #ff6347;
+        }
+        table {
+            border-collapse: collapse;
+            margin: auto;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #6264a7;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+        tbody tr {
+            background-color: #ffffff;
+            border-bottom: 1px solid #dddddd;
+        }
+        tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+        tbody tr:last-of-type {
+            border-bottom: 2px solid #556;
+        }
+        tbody tr:hover {
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
+        p {
+            text-align: center;
+            color: #556;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Party Statistics</h1>
+    {% if records %}
+    <table>
+        <thead>
+            <tr>
+                <th>Party</th>
+                <th>Bond Number</th>
+                <th>Denomination</th>
+                <!-- Add more columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record[0] }}</td>
+                <td>{{ record[1] }}</td>
+                <td>{{ record[2] }}</td>
+                <!-- Add more columns as needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Combined Donation Amount: {{ combined_donation_amount }}</h2>
+    {% else %}
+        <p>No records found.</p>
+    {% endif %}
+</body>
+</html>

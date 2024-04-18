@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCC Assignment 4</title>
+    <style>
+        /* Basic reset and box sizing */
+        *, *:before, *:after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styling the body with a more neutral background and using Google Fonts */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Container for centering the layout */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Centering title and enhancing its appearance */
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 0.3em;
+        }
+
+        /* Paragraph styles for better readability */
+        p {
+            color: #555;
+            font-size: 1.1em;
+            margin-top: 0;
+            margin-bottom: 1em;
+        }
+
+        /* Styling the list and links for better interactivity */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: #ecf0f1;
+            margin-bottom: 1em;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        ul li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        ul li a:hover {
+            background-color: #3498db;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DCC Assignment 4</h1>
+        <p>Welcome to the homepage of our website.</p>
+        <ul>
+            <li><a href="/search">Search Records</a></li>
+            <li><a href="/nbonds">Total Electoral Bonds by Company</a></li>
+            <li><a href="/nbondsparty">Donations Received by Party</a></li>
+            <li><a href="/partycompany">Bond Purchasers by Party</a></li>
+            <li><a href="/companyparty">Bond Purchase Data by Company</a></li>
+            <li><a href="/pie">Pie chart</a></li>
+        </ul>
+    </div>
+</body>
+</html>
