@@ -13,9 +13,10 @@
     <div style="width: 50%; margin: 0 auto;">
         <!-- Canvas element for the pie chart -->
         <canvas id="partyDonationsChart"></canvas>
-        <br>
         <!-- Button to save chart as image -->
         <button onclick="saveChart()">Save as Image</button>
+        <!-- Hidden link to download the chart image -->
+        <a id="downloadLink" style="display: none;"></a>
     </div>
 
     <script>
@@ -53,20 +54,18 @@
             }
         });
 
-
+        // Function to save chart as image
         function saveChart() {
-
+            // Use html2canvas to capture the chart as an image
             html2canvas(document.getElementById('partyDonationsChart')).then(function(canvas) {
-
+                // Convert the canvas to a data URL representing a PNG image
                 var imgData = canvas.toDataURL('image/png');
-
-                var link = document.createElement('a');
-
-                link.href = imgData;
-
-                link.download = 'party_donations_chart.png';
-
-                link.click();
+                // Set the href attribute of the hidden link to the data URL
+                document.getElementById('downloadLink').href = imgData;
+                // Set the download attribute of the hidden link to specify the filename
+                document.getElementById('downloadLink').download = 'party_donations_chart.png';
+                // Click the hidden link to trigger the download
+                document.getElementById('downloadLink').click();
             });
         }
     </script>
