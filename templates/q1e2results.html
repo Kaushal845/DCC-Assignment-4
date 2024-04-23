@@ -5,89 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
         table {
-            border-collapse: collapse;
             width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
         th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
             text-align: center;
         }
-<!--        th {-->
-<!--            background-color: #f2f2f2;-->
-<!--        }-->
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+        .no-records {
+            text-align: center;
+            color: #777;
+            margin-top: 20px;
+        }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body bgcolor="grey">
-    <h1>Company Statistics</h1>
-    {% if records %}
-    <table>
-        <thead>
-            <tr>
-                <th style="color: white;">Year</th>
-                <th style="color: white;">Number</th>
-                <th style="color: white;">Total Denomination</th>
-                <!-- Add more columns as needed -->
-            </tr>
-        </thead>
-        <tbody>
-            {% for record in records %}
-            <tr>
-                <td style="color: white;">{{ record[0] }}</td>
-                <td style="color: white;">{{ record[1] }}</td>
-                <td style="color: white;">{{ record[2] }}</td>
-                <!-- Add more columns as needed -->
-            </tr>
-            {% endfor %}
-        </tbody>
-      {% else %}
-        <p>No records found.</p>
-    {% endif %}
-    </table>
-
-
-<!-- <canvas id="statisticsChart" width="800" height="400"></canvas>-->
-
-<!--    <script>-->
-<!--        var statisticsData = records[0];-->
-
-
-<!--        var years = statisticsData[0];-->
-<!--        var bondCounts = statisticsData[1];-->
-<!--        var totalValues = statisticsData[2];-->
-
-
-<!--        var ctx = document.getElementById('statisticsChart').getContext('2d');-->
-<!--        var myChart = new Chart(ctx, {-->
-<!--            type: 'bar',-->
-<!--            data: {-->
-<!--                labels: years,-->
-<!--                datasets: [{-->
-<!--                    label: 'Number of Bonds',-->
-<!--                    data: bondCounts,-->
-<!--                    backgroundColor: 'rgba(255, 99, 132, 0.2)', // Red color with opacity-->
-<!--                    borderColor: 'rgba(255, 99, 132, 1)', // Red color without opacity-->
-<!--                    borderWidth: 1-->
-<!--                }, {-->
-<!--                    label: 'Total Value',-->
-<!--                    data: totalValues,-->
-<!--                    backgroundColor: 'rgba(54, 162, 235, 0.2)', // Blue color with opacity-->
-<!--                    borderColor: 'rgba(54, 162, 235, 1)', // Blue color without opacity-->
-<!--                    borderWidth: 1-->
-<!--                }]-->
-<!--            },-->
-<!--            options: {-->
-<!--                scales: {-->
-<!--                    yAxes: [{-->
-<!--                        ticks: {-->
-<!--                            beginAtZero: true-->
-<!--                        }-->
-<!--                    }]-->
-<!--                }-->
-<!--            }-->
-<!--        });-->
-<!--    </script>-->
+<body>
+    <div class="container">
+        <div align="center">
+        <h1>Company Statistics</h1></div>
+        {% if records %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Number</th>
+                    <th>Total Denomination</th>
+                    <!-- Add more columns as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                    <!-- Add more columns as needed -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-records">No records found.</p>
+        {% endif %}
+    </div>
 </body>
 </html>
