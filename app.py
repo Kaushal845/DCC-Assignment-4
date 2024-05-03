@@ -10,6 +10,16 @@ app.config['MYSQL_DB'] = 'electoral_bond'
 mysql = MySQL(app)
 
 
+def indian_number(number):
+    s, *d = str(number).partition(".")
+    r = ",".join([s[x-2:x] for x in range(-3, -len(s), -2)][::-1] + [s[-3:]])
+    return "".join([r] + d)
+
+
+# Add the filter to the Jinja environment
+app.jinja_env.filters['indian_number'] = indian_number
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -47,14 +57,19 @@ def nbonds():
     if request.method == 'POST':
         q3 = request.form.get('Company')
         cursor = mysql.connection.cursor()
+        cursor.execute('SELECT DISTINCT(Company) FROM companybond')
+        name = cursor.fetchall()
         cursor.execute(
             f'SELECT YEAR(Purchasedate) AS year, COUNT(*) AS bond_count, SUM(Denominations) AS total_value FROM companybond WHERE Company = %s GROUP BY YEAR(Purchasedate)',
             (q3,))
         records = cursor.fetchall()
         cursor.close()
         return render_template('q1e2results.html', records=records)
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT DISTINCT(Company) FROM companybond')
+    name = cursor.fetchall()
 
-    return render_template('q1e2.html')
+    return render_template('q1e2.html', names=name)
 
 
 @app.route('/nbondsparty', methods=['GET', "POST"])
@@ -72,7 +87,11 @@ def nbondsparty():
         tot = [row[3] for row in records]
         return render_template('q1e3results.html', records=records)
 
-    return render_template('q1e3.html')
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT DISTINCT(Party) FROM partybond ORDER BY Party')
+    name = cursor.fetchall()
+
+    return render_template('q1e3.html', names=name)
 
 
 @app.route('/companyparty', methods=['GET', 'POST'])
@@ -106,6 +125,7 @@ def partycompany():
         return render_template('q1e5result.html', records=records, combined_donation_amount=combined_donation_amount)
     return render_template('q1e5.html')
 
+
 @app.route('/pie')
 def pie():
     cursor = mysql.connection.cursor()
@@ -117,7 +137,6 @@ def pie():
     donation_amounts = [row[1] for row in party_donations]
 
     return render_template('q1e6.html', party_labels=party_labels, donation_amounts=donation_amounts)
-
 
 
 if __name__ == '__main__':

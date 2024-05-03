@@ -24,7 +24,7 @@
             width: 300px;
             text-align: center;
         }
-        h1 {
+        h3 {
             color: #333;
             font-size: 24px;
         }
@@ -36,7 +36,7 @@
             display: block;
             font-weight: bold;
         }
-        input[type="text"] {
+        select {
             width: 100%;
             padding: 10px;
             margin-top: 8px;
@@ -62,8 +62,13 @@
     <div class="container">
         <h3>Search Company Bond Data</h3>
         <form action="/nbondsparty" method="post">
-            <label for="Party">Search Party:</label>
-            <input type="text" name="Party" id="Party" required>
+            <label for="Party">Select Party:</label>
+            <select name="Party" id="Party" required>
+                <!-- Iterate through names variable and create options -->
+                {% for name in names %}
+                    <option value="{{ name[0] }}">{{ name[0] }}</option>
+                {% endfor %}
+            </select>
             <button type="submit">Search</button>
         </form>
     </div>
