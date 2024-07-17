@@ -24,7 +24,7 @@ API_KEY = 'YOUR_GOOGLE_API_KEY'
 SEARCH_ENGINE_ID = 'YOUR_SEARCH_ENGINE_ID'
 
 def fetch_info(name):
-    search_url = f"https://www.googleapis.com/customsearch/v1?key=AIzaSyBxx1YHuQp2MlY_rW2pKPiPzCePX9rspQ0&cx=071a0f1918a4847ce&q={name}"
+    search_url = f"https://www.googleapis.com/customsearch/v1?key=&cx=071a0f1918a4847ce&q={name}"
     response = requests.get(search_url)
     if response.status_code == 200:
         search_results = response.json()
