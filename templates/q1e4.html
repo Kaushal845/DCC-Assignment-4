@@ -5,46 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Company Bond Data</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+        /* Reset styles */
+        body, html {
             margin: 0;
             padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #333;
         }
 
+        /* Main container styles */
         .container {
-            background-color: white;
+            background-color: #ffffff;
             padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        form {
             max-width: 300px;
-            margin: auto;
+            width: 100%;
+            box-sizing: border-box;
         }
 
-        input[type="text"] {
+        /* Header styles */
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* Form styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Label styles */
+        label {
+            width: 100%;
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* Select box styles */
+        select {
             width: 100%;
             padding: 10px;
             margin-top: 8px;
             margin-bottom: 16px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding is included in width */
+            font-size: 16px;
+            color: #333;
         }
 
-        button {
+        /* Button styles */
+        button[type="submit"] {
             width: 100%;
             padding: 10px;
             background-color: #007BFF;
@@ -53,9 +74,10 @@
             color: white;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 16px;
         }
 
-        button:hover {
+        button[type="submit"]:hover {
             background-color: #0056b3;
         }
     </style>
@@ -64,8 +86,13 @@
     <div class="container">
         <h2>Search Company Bond Data</h2>
         <form action="/companyparty" method="post">
-            <label for="Companyname">Search Company:</label>
-            <input type="text" name="Companyname" id="Companyname" required>
+            <label for="Companyname">Select Company:</label>
+            <select name="Companyname" id="Companyname" required>
+                <!-- Iterate through company names and create options -->
+                {% for name in names %}
+                    <option value="{{ name[0] }}">{{ name[0] }}</option>
+                {% endfor %}
+            </select>
             <button type="submit">Search</button>
         </form>
     </div>

@@ -90,6 +90,15 @@ p {
         {% else %}
         <p>No records found.</p>
         {% endif %}
+        {% if pinfo %}
+        <div class="pinfo">
+            <div align="center">
+            <h2>Party Information</h2>
+            <p>{{ pname }}</p>
+            <p>{{ pinfo.snippet|replace('|', '<br>')|safe }}</p>
+            <p><strong>Link:</strong> <a href="{{ pinfo.link }}" target="_blank">{{ pinfo.link }}</a></p>
+        </div></div>
+        {% endif %}
     </div>
 </body>
 </html>
