@@ -23,14 +23,14 @@ app.jinja_env.filters['indian_number'] = indian_number
 API_KEY = 'YOUR_GOOGLE_API_KEY'
 SEARCH_ENGINE_ID = 'YOUR_SEARCH_ENGINE_ID'
 
-def fetch_info(name):
-    search_url = f"https://www.googleapis.com/customsearch/v1?key=&cx=071a0f1918a4847ce&q={name}"
-    response = requests.get(search_url)
-    if response.status_code == 200:
-        search_results = response.json()
-        if 'items' in search_results:
-            return search_results['items'][0]  # Get the first result
-    return None
+# def fetch_info(name):
+#     search_url = f"https://www.googleapis.com/customsearch/v1?key=AIzaSyBxx1YHuQp2MlY_rW2pKPiPzCePX9rspQ0&cx=071a0f1918a4847ce&q={name}"
+#     response = requests.get(search_url)
+#     if response.status_code == 200:
+#         search_results = response.json()
+#         if 'items' in search_results:
+#             return search_results['items'][0]  # Get the first result
+#     return None
 
 @app.route('/')
 def index():
@@ -76,9 +76,9 @@ def nbonds():
             (q3,))
         records = cursor.fetchall()
         cursor.close()
-        company_info = fetch_info(q3)
-        cname = q3
-        return render_template('q1e2results.html', records=records, company_info=company_info, cname=cname)
+        # company_info = fetch_info(q3)
+        # cname = q3
+        return render_template('q1e2results.html', records=records)
     cursor = mysql.connection.cursor()
     cursor.execute('SELECT DISTINCT(Company) FROM companybond')
     name = cursor.fetchall()
@@ -99,9 +99,9 @@ def nbondsparty():
         party = [row[1] for row in records]
         bonds = [row[2] for row in records]
         tot = [row[3] for row in records]
-        pinfo = fetch_info(q4)
-        pname = q4
-        return render_template('q1e3results.html', records=records,pinfo=pinfo,pname=pname)
+        # pinfo = fetch_info(q4)
+        # pname = q4
+        return render_template('q1e3results.html', records=records)
 
     cursor = mysql.connection.cursor()
     cursor.execute('SELECT DISTINCT(Party) FROM partybond ORDER BY Party')
